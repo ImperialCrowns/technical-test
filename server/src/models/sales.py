@@ -9,7 +9,7 @@ class Sale(BaseModel) :
     vendor_id: int
     unique_sale_id: str
     customer_id: int
-    curenncy: str
+    currency: str
     total: str
-    billing_address: str
-    shipping_address: str
+    billing_address: int
+    shipping_address: int

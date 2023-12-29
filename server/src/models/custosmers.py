@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class Customer(BaseModel) :
-    customer_id: int
+    customers_id: int
     last_name: str
     first_name: str
     email: str
@@ -11,9 +11,9 @@ class Customer(BaseModel) :
     date_of_birth: str
     validity: str
     loyalty_points: int
-    initial_loyalty_points: int
-    prepaid_purchase: str
+    intial_loyalty_points: int
+    prepaid_purchases: str
     store_credit: str
-    customer_ref_exit: str
+    customers_ref_ext: str
     last_order_date: str
     customers_code: str
