@@ -15,7 +15,7 @@ async def get_customers_from_lastname(last_name: str, page: int = 1) -> List[Cus
         )
         response.raise_for_status()
         data = response.json()
-        formated_data : List[Customer] = [Customer.parse_obj(customer) for customer in data]
+        formated_data : List[Customer] = [Customer.model_validate(customer) for customer in data]
         return formated_data
     
 async def get_customer_sales(customer_id: int, page: int = 1):
@@ -30,7 +30,7 @@ async def get_customer_sales(customer_id: int, page: int = 1):
             )
             response.raise_for_status()
             data = response.json()
-            formated_data : List[Sale] = [Sale.parse_obj(sale) for sale in data]
+            formated_data : List[Sale] = [Sale.model_validate(sale) for sale in data]
             formated_data = formated_data[5*(page-1):5*page]
             return formated_data
     except httpx.HTTPStatusError as e:
