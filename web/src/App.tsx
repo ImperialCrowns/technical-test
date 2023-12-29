@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useEffect } from "react"
 import {
   ChakraProvider,
   Box,
@@ -10,29 +11,30 @@ import {
   theme,
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { useGetCustomersQuery } from "./Services/api"
+import { AuthProvider, useAuthContext } from "./Context/AuthContext"
+import Dashboard from "./Views/Dashboard"
+import Auth from "./Views/Auth"
+import { Provider } from "react-redux"
+import { store } from "./store"
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+function App() {
+    //const infos = useAuthContext();
+    //return <>{infos.isAuthenticated ? <Dashboard /> : <Auth />}</>
+    const info = true;
+    return <>{info ? <Dashboard /> : <Auth />}</>
+}
+
+function RootApp() {
+    return (
+        <ChakraProvider theme={theme}>
+            <AuthProvider>
+                <Provider store={store}>
+                    <App />
+                </Provider>
+            </AuthProvider>
+        </ChakraProvider>
+    );
+}
+
+export default RootApp;
