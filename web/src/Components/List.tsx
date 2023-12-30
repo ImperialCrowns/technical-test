@@ -8,8 +8,9 @@ import {
     UnorderedList,
     Stack,
     Center,
-    Link,
+    Button,
   } from '@chakra-ui/react'
+import { Navigate, Link } from 'react-router-dom';
 
 function ListCustomers(props : {customers: Customer[] | undefined}) {
     return (
@@ -18,10 +19,8 @@ function ListCustomers(props : {customers: Customer[] | undefined}) {
                 <List>
                     {props.customers?.map((customer) => {
                         return (
-                            <ListItem key={customer.customers_id}>
-                                <Link href={`/customers/:${customer.customers_id}`}>
-                                    {customer.first_name} {customer.last_name}
-                                </Link>
+                            <ListItem key={customer.customers_id} margin={2} blockSize={50}>
+                                <Button as={Link} to={`/customers/${customer.customers_id}?lastname=${customer.last_name}&firstname=${customer.first_name}`}>{customer.first_name} {customer.last_name}</Button>
                             </ListItem>
                         );
                     })}

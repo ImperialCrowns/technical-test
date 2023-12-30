@@ -1,11 +1,13 @@
 import React from 'react';
+import { Center, Spinner } from '@chakra-ui/react';
 
-function Spinner() {
+
+function Spin() {
     return (
-        <div>
-            <h1>Spinner</h1>
-        </div>
+        <Center>
+            <Spinner/>
+        </Center>
     );
 }
 
-export default Spinner;
+export default Spin;

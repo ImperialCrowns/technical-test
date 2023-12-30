@@ -19,6 +19,7 @@ import { Provider } from "react-redux"
 import { store } from "./store"
 import { RouterProvider, Routes, createBrowserRouter, Route } from "react-router-dom"
 import Sales from "./Views/Sales"
+import { Customer } from "./Models/Customer"
 
 function App() {
     const infos = useAuthContext();
@@ -32,7 +33,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/customers" element={<Dashboard />} />
-                        <Route path="/customers/:id" element={<Sales />} />
+                        <Route path="/customers/:id" element={<Sales/>}/>
                     </Routes>
                 </>
             );
@@ -51,13 +52,10 @@ const appPaths = [
                 index: true,
                 path: "*",
                 element: <App />
-            },
-            {
-                path: "dashboard/*",
-                element: <Dashboard />
             }
         ]
     }
+
 ];
 
 

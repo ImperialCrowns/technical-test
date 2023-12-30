@@ -22,16 +22,13 @@ async def get_customer_sales(customer_id: int, page: int = 1):
     page_request = max(1, page * 5 // 250)
     env = get_config()
     auth = BasicAuth(env.EMAIL, env.API_KEY)
-    try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{env.API_URL}/customer/{customer_id}/sales/?p={page_request}",
-                auth=auth
-            )
-            response.raise_for_status()
-            data = response.json()
-            formated_data : List[Sale] = [Sale.model_validate(sale) for sale in data]
-            formated_data = formated_data[5*(page-1):5*page]
-            return formated_data
-    except httpx.HTTPStatusError as e:
-        return {"error": e.response.json()}
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            f"{env.API_URL}/customer/{customer_id}/sales/?p={page_request}",
+            auth=auth
+        )
+        response.raise_for_status()
+        data = response.json()
+        formated_data : List[Sale] = [Sale.model_validate(sale) for sale in data]
+        formated_data = formated_data[5*(page-1):5*page]
+        return formated_data

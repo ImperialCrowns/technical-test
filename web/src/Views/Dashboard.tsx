@@ -5,19 +5,19 @@ import {
   } from '@chakra-ui/react'
 import { SearchBar } from '../Components/SearchBar';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import { SpinnerIcon } from '@chakra-ui/icons';
 import ListCustomers from '../Components/List';
+import Spin from '../Components/Spinner';
 
 function Dashboard() {
     const [search, setSearch] = useState<string>("");
-    const {data, error, isLoading, currentData} = useGetCustomersQuery({lastname: search, page: 1});
+    const {data, error, isLoading, currentData} = useGetCustomersQuery({lastname: search, page: 1}, {skip: search.length < 3});
     return (
         <Stack>
             <HStack spacing={1} margin={2}>
-                    <SearchBar placeholder="Search by last name" value={search} setValue={setSearch}/>
-                    <ColorModeSwitcher />
+                <SearchBar placeholder="Search by last name" value={search} setValue={setSearch}/>
+                <ColorModeSwitcher />
             </HStack>
-            {isLoading ? <SpinnerIcon w={6} h={6} />  : <ListCustomers customers={currentData}/>}
+            {isLoading ? <Spin/>  : <ListCustomers customers={currentData}/>}
         </Stack>
     );
 }
