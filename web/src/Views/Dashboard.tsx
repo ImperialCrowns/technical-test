@@ -5,7 +5,7 @@ import {
   } from '@chakra-ui/react'
 import { SearchBar } from '../Components/SearchBar';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import ListCustomers from '../Components/List';
+import ListCustomers from '../Components/CustomersList';
 import Spin from '../Components/Spinner';
 
 function Dashboard() {
