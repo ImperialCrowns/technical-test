@@ -5,6 +5,7 @@ import { Box, Button, Center, HStack, Heading, Stack, Text, Flex, VStack } from 
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import SalesList from "../Components/SalesList";
 import Spin from "../Components/Spinner";
+import { ColorModeSwitcher } from "../ColorModeSwitcher";
 
 function Sales() : JSX.Element {
     const { id } = useParams();
@@ -51,7 +52,8 @@ function Sales() : JSX.Element {
 
     return (
         <Stack spacing={1} marginLeft={2} marginTop={2}>
-            <Button as={Link} to="/customers" size="sm" alignSelf="flex-start" position="absolute" leftIcon={<ArrowBackIcon />}>Back</Button>
+            <Button as={Link} to="/" size="sm" alignSelf="flex-start" position="absolute" leftIcon={<ArrowBackIcon />}>Back</Button>
+            <ColorModeSwitcher alignSelf="flex-end" position="absolute" right={2} />
             <VStack>
                 <Center>
                     <Heading size="md" alignSelf="auto">{firstname} {lastname}'s sales list</Heading>
@@ -60,10 +62,10 @@ function Sales() : JSX.Element {
                 {data?.length === 0 ? <Heading size="sm">No sales found</Heading> :
                     <>
                     <HStack>
-                        <Button leftIcon={<ArrowBackIcon/>} variant="solid" colorScheme='green' onClick={handlePrevPage} isDisabled={prevDisabled}>
+                        <Button leftIcon={<ArrowBackIcon/>} variant="solid" colorScheme='blue' onClick={handlePrevPage} isDisabled={prevDisabled}>
                             Prev page
                         </Button>
-                        <Button rightIcon={<ArrowForwardIcon/>} variant="solid" colorScheme='green' onClick={handleNextPage} isDisabled={nextDisabled}>
+                        <Button rightIcon={<ArrowForwardIcon/>} variant="solid" colorScheme='blue' onClick={handleNextPage} isDisabled={nextDisabled}>
                             Next page
                         </Button>
                     </HStack>

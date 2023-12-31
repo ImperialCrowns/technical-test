@@ -24,8 +24,8 @@ function SaleItem(props: {sale: Sale}) : JSX.Element {
                 <ListItem>Customer id : {props.sale.customer_id}</ListItem>
                 <ListItem>Vendor id : {props.sale.vendor_id}</ListItem>
                 <ListItem>Unique Sale id : {props.sale.unique_sale_id}</ListItem>
+                <ListItem>Total : {props.sale.total} {props.sale.currency}</ListItem>
                 <ListItem>Currency : {props.sale.currency}</ListItem>
-                <ListItem>Total : {props.sale.total}</ListItem>
                 <ListItem>Billing Address : {props.sale.billing_address}</ListItem>
                 <ListItem>Shipping Adress : {props.sale.shipping_address}</ListItem>
                 <ListItem>Completed at : {props.sale.completed_at}</ListItem>
