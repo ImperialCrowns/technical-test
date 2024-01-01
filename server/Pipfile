@@ -9,6 +9,7 @@ uvicorn = {extras = ["standart"], version = "*"}
 pydantic = "*"
 python-dotenv = "*"
 pydantic-settings = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
