@@ -1,24 +1,16 @@
-import * as React from "react"
-import { useEffect, useState } from "react"
 import {
   ChakraProvider,
-  Box,
   Text,
   VStack,
-  Code,
-  Grid,
   theme,
   Button,
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { useGetCustomersQuery } from "./Services/api"
 import { AuthProvider, useAuthContext } from "./Context/AuthContext"
 import Dashboard from "./Views/Dashboard"
 import { Provider } from "react-redux"
 import { store } from "./store"
-import { RouterProvider, Routes, BrowserRouter, Route, Navigate, Link } from "react-router-dom"
+import { Routes, BrowserRouter, Route, Navigate, Link } from "react-router-dom"
 import Sales from "./Views/Sales"
-import { Customer } from "./Models/Customer"
 import Login from "./Views/Login"
 import Register from "./Views/Register"
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Sale } from '../Models/Sale';
 import {
     Accordion,
@@ -10,10 +9,7 @@ import {
     Box,
     List,
     ListItem,
-    Button,
-    HStack,
 } from '@chakra-ui/react'
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 function SaleItem(props: {sale: Sale}) : JSX.Element {
     return (

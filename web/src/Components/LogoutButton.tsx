@@ -1,9 +1,8 @@
 import React, { useEffect } from "react"
 import { useLogoutMutation } from "../Services/api"
-import { Button, IconButton, IconButtonProps } from "@chakra-ui/react";
+import { Button, IconButtonProps } from "@chakra-ui/react";
 import { useAuthContext } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { CloseIcon } from "@chakra-ui/icons";
 
 type LogoutButtonProps = Omit<IconButtonProps, "aria-label">
 

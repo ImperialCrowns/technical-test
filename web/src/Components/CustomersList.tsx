@@ -1,16 +1,12 @@
-import React from 'react';
 import { Customer } from '../Models/Customer';
 import {
     List,
     ListItem,
-    ListIcon,
-    OrderedList,
-    UnorderedList,
     Stack,
     Center,
     Button,
   } from '@chakra-ui/react'
-import { Navigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function ListCustomers(props : {customers: Customer[] | undefined}) {
     return (

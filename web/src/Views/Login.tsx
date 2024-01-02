@@ -1,13 +1,12 @@
 import { EmailIcon } from "@chakra-ui/icons";
 import { Avatar, Flex, Stack, Heading, Box, FormControl, Input, InputGroup, InputLeftElement, chakra, InputRightElement, Button } from "@chakra-ui/react";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import { FaLock } from "react-icons/fa";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
-import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Context/AuthContext";
 import { UserLogin } from "../Models/User";
 import { useLoginMutation } from "../Services/api";
-import { info } from "console";
 
 const CFaLock = chakra(FaLock);
 

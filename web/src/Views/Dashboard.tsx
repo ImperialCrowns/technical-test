@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import { useGetCustomersQuery, useGetSalesByCustomerQuery } from '../Services/api';
+import {useState} from 'react';
+import { useGetCustomersQuery } from '../Services/api';
 import {
-    HStack, List, Stack, VStack,
+    HStack, Stack,
   } from '@chakra-ui/react'
 import { SearchBar } from '../Components/SearchBar';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';

@@ -1,7 +1,7 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { useGetCustomersQuery, useGetSalesByCustomerQuery } from "../Services/api";
-import { Box, Button, Center, HStack, Heading, Stack, Text, Flex, VStack } from "@chakra-ui/react";
+import { useGetSalesByCustomerQuery } from "../Services/api";
+import { Button, Center, HStack, Heading, Stack, Text, Flex, VStack } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import SalesList from "../Components/SalesList";
 import Spin from "../Components/Spinner";
