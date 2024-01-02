@@ -52,7 +52,7 @@ function Sales() : JSX.Element {
 
     return (
         <Stack spacing={1} marginLeft={2} marginTop={2}>
-            <Button as={Link} to="/" size="sm" alignSelf="flex-start" position="absolute" leftIcon={<ArrowBackIcon />}>Back</Button>
+            <Button as={Link} to="/customers" size="sm" alignSelf="flex-start" position="absolute" leftIcon={<ArrowBackIcon />}>Back</Button>
             <ColorModeSwitcher alignSelf="flex-end" position="absolute" right={2} />
             <VStack>
                 <Center>

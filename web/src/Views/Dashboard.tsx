@@ -7,6 +7,7 @@ import { SearchBar } from '../Components/SearchBar';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import ListCustomers from '../Components/CustomersList';
 import Spin from '../Components/Spinner';
+import LogoutButton from '../Components/LogoutButton';
 
 function Dashboard() {
     const [search, setSearch] = useState<string>("");
@@ -18,6 +19,7 @@ function Dashboard() {
                 <ColorModeSwitcher />
             </HStack>
             {isLoading ? <Spin/>  : <ListCustomers customers={currentData}/>}
+            <LogoutButton position="fixed" bottom="4" right="4"/>
         </Stack>
     );
 }

@@ -14,12 +14,13 @@ import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { useGetCustomersQuery } from "./Services/api"
 import { AuthProvider, useAuthContext } from "./Context/AuthContext"
 import Dashboard from "./Views/Dashboard"
-import Auth from "./Views/Auth"
 import { Provider } from "react-redux"
 import { store } from "./store"
 import { RouterProvider, Routes, BrowserRouter, Route, Navigate, Link } from "react-router-dom"
 import Sales from "./Views/Sales"
 import { Customer } from "./Models/Customer"
+import Login from "./Views/Login"
+import Register from "./Views/Register"
 
 function NoMatch() {
     return (
@@ -30,13 +31,26 @@ function NoMatch() {
     );
 }
 
+function Redirect() {
+    const infos = useAuthContext();
+
+    return (
+        <>
+            {infos.isAuthenticated === true ? <Navigate to="/customers" /> : <Navigate to="/login" />}
+        </>
+    )
+}
+
 function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Navigate to="/customers"/>} />
+                <Route path="/" element={<Navigate to="/redirect"/>} />
+                <Route path="/redirect" element={<Redirect/>} />
                 <Route path="/customers" element={<Dashboard/>} />
                 <Route path="/customers/:id" element={<Sales />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="*" element={<NoMatch />} />
             </Routes>
         </>
@@ -44,14 +58,12 @@ function App() {
 }
 
 function RootApp() {
-    const infos = useAuthContext();
-    infos.isAuthenticated = true;
     return (
         <ChakraProvider theme={theme}>
             <AuthProvider>
                 <Provider store={store}>
                     <BrowserRouter>
-                        {infos?.isAuthenticated ? <App /> : <Auth />}
+                        <App />
                     </BrowserRouter>
                 </Provider>
             </AuthProvider>
