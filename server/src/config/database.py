@@ -12,3 +12,11 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 Base = declarative_base()
 
 SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
+
+Base.metadata.create_all(engine)
+def get_session():
+    session = SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
