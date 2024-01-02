@@ -34,12 +34,15 @@ app.add_middleware(
     allow_credentials=True,
     allow_origins=["*"],
     allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(CustomerRouter)
 
 @app.post("/register", tags=["Users"])
 def register_user(user: Users.UserCreate, db: Session = Depends(get_session)):
+    if user.magicKey != env.MAGIC_KEY:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect magic key")
     already_exists = db.query(Users.User).filter_by(email=user.email).first()
     if already_exists:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email already exists")
@@ -53,9 +56,9 @@ def register_user(user: Users.UserCreate, db: Session = Depends(get_session)):
     db.add(new_token)
     db.commit()
     db.refresh(new_token)
-    return new_token
+    return {"token": new_token.access_token}
 
-@app.post("/login", dependencies=[Depends(JWTBearer())], tags=["Users"])
+@app.post("/login", tags=["Users"])
 def login_user(request: Users.UserRequest, db: Session = Depends(get_session)):
     user = db.query(Users.User).filter(Users.User.email == request.email).first()
     if user is None:
@@ -74,13 +77,13 @@ def login_user(request: Users.UserRequest, db: Session = Depends(get_session)):
         db.add(existing_token)
         db.commit()
         db.refresh(existing_token)
-        return {"access_token": access_token, "refresh_token": refresh_token}
+        return {"token": access_token}
     
     token = Users.TokenTable(user_id=user.id, access_token=access_token, refresh_token=refresh_token, status=True)
     db.add(token)
     db.commit()
     db.refresh(token)
-    return {"access_token": access_token, "refresh_token": refresh_token}
+    return {"token": access_token}
 
 @app.post("/logout", dependencies=[Depends(JWTBearer())], tags=["Users"])
 def logout_user(dependencies=Depends(JWTBearer()), db: Session = Depends(get_session)):

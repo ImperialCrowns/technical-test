@@ -22,6 +22,7 @@ class UserCreate(BaseModel):
     username: str
     email: str
     password: str
+    magicKey: str
     
 class UserRequest(BaseModel):
     email: str

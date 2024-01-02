@@ -12,6 +12,7 @@ class Config(BaseSettings):
     JWT_SECRET: str
     JWT_REFRESH_SECRET: str
     DATABASE_URL: str
+    MAGIC_KEY: str
     model_config = SettingsConfigDict(env_file='.env')
     
 @lru_cache() 
